@@ -1,0 +1,3 @@
+include ':corelibrary'
+include ':app'
+rootProject.name = "MvpProject"

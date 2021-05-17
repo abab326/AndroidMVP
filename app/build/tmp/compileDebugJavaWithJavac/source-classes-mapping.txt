@@ -1,4 +1,0 @@
-com/miniso/mvpdemo/BuildConfig.java
- com.miniso.mvpdemo.BuildConfig
-com/miniso/mvpdemo/MainActivity.java
- com.miniso.mvpdemo.MainActivity

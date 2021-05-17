@@ -1,2 +1,0 @@
-com/miniso/corelibrary/ExampleUnitTest.java
- com.miniso.corelibrary.ExampleUnitTest

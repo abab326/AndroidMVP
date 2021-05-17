@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MVPDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/MVPDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MVPDemo.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MVPDemo.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/corelibrary/MVPDemo.corelibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/corelibrary/MVPDemo.corelibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MvpProject.iml" filepath="$PROJECT_DIR$/.idea/modules/MvpProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MvpProject.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MvpProject.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/corelibrary/MvpProject.corelibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/corelibrary/MvpProject.corelibrary.iml" />
     </modules>
   </component>
 </project>

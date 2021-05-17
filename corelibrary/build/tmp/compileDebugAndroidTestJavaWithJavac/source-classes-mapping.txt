@@ -1,4 +1,0 @@
-com/miniso/corelibrary/test/BuildConfig.java
- com.miniso.corelibrary.test.BuildConfig
-com/miniso/corelibrary/ExampleInstrumentedTest.java
- com.miniso.corelibrary.ExampleInstrumentedTest
