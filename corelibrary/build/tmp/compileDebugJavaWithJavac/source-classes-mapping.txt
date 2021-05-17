@@ -1,0 +1,42 @@
+com/miniso/corelibrary/base/BaseActivity.java
+ com.miniso.corelibrary.base.BaseActivity
+com/miniso/corelibrary/base/BasePresenter.java
+ com.miniso.corelibrary.base.BasePresenter
+com/miniso/corelibrary/BuildConfig.java
+ com.miniso.corelibrary.BuildConfig
+com/miniso/corelibrary/mvp/IPresenter.java
+ com.miniso.corelibrary.mvp.IPresenter
+com/miniso/corelibrary/mvp/IModel.java
+ com.miniso.corelibrary.mvp.IModel
+com/miniso/corelibrary/http/ApiConfig.java
+ com.miniso.corelibrary.http.ApiConfig
+com/miniso/corelibrary/mvp/IView.java
+ com.miniso.corelibrary.mvp.IView
+com/miniso/corelibrary/bean/BaseResult.java
+ com.miniso.corelibrary.bean.BaseResult
+com/miniso/corelibrary/utils/ToastUtil.java
+ com.miniso.corelibrary.utils.ToastUtil
+com/miniso/corelibrary/manager/ActivitiesManager.java
+ com.miniso.corelibrary.manager.ActivitiesManager
+com/miniso/corelibrary/http/RequestUrlInterceptor.java
+ com.miniso.corelibrary.http.RequestUrlInterceptor
+com/miniso/corelibrary/impl/ActivityLifecycleCallbacksImpl.java
+ com.miniso.corelibrary.impl.ActivityLifecycleCallbacksImpl
+com/miniso/corelibrary/events/LoginOutEvent.java
+ com.miniso.corelibrary.events.LoginOutEvent
+com/miniso/corelibrary/base/BaseModel.java
+ com.miniso.corelibrary.base.BaseModel
+com/miniso/corelibrary/events/EmptyEvent.java
+ com.miniso.corelibrary.events.EmptyEvent
+com/miniso/corelibrary/base/BaseFragment.java
+ com.miniso.corelibrary.base.BaseFragment
+com/miniso/corelibrary/http/CustomizeObserver.java
+ com.miniso.corelibrary.http.CustomizeObserver
+com/miniso/corelibrary/base/BaseApplication.java
+ com.miniso.corelibrary.base.BaseApplication
+com/miniso/corelibrary/http/RetrofitHelper.java
+ com.miniso.corelibrary.http.RetrofitHelper
+com/miniso/corelibrary/http/RequestHeaderInterceptor.java
+ com.miniso.corelibrary.http.RequestHeaderInterceptor
+com/miniso/corelibrary/utils/RegexUtils.java
+ com.miniso.corelibrary.utils.RegexUtils

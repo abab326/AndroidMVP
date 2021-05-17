@@ -1,0 +1,4 @@
+#Fri May 14 10:44:40 CST 2021
+base.0=D\:\\android_projects\\MVPDemo\\corelibrary\\build\\intermediates\\dex\\debugAndroidTest\\mergeDexDebugAndroidTest\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
