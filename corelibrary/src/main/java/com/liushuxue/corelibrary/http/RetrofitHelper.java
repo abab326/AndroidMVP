@@ -10,6 +10,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitHelper {
+
     private static RetrofitHelper instance;
     private Retrofit retrofit;
 
