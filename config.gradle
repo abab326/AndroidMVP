@@ -39,6 +39,9 @@ ext {
             "eventbus"               : "org.greenrobot:eventbus:3.2.0",
             // xpopup
             "xpopup"                 : 'com.lxj:xpopup:1.9.0',
+            // 图片压缩
+            "compressor"             : 'id.zelory:compressor:3.0.1',
+            "Luban"                  : 'top.zibin:Luban:1.1.6',
             // butterKnife
             "butterknife"            : "com.jakewharton:butterknife:${versionCode.butterknife}",
             "butterknife-runtime"    : "com.jakewharton:butterknife-runtime:${versionCode.butterknife}",
