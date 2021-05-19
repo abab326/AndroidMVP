@@ -1,7 +1,6 @@
 package com.liushuxue.corelibrary.base;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.liushuxue.corelibrary.http.ResultObserver;
 import com.liushuxue.corelibrary.mvp.IModel;
@@ -16,12 +15,14 @@ import java.io.OutputStream;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
 public abstract class BaseModel implements IModel {
+    public static final String TAG ="BaseModel";
     protected CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     /**
@@ -61,20 +62,12 @@ public abstract class BaseModel implements IModel {
     }
 
 
-    public void downloadFile(Observable<ResponseBody> responseBodyObservable) {
-        responseBodyObservable.observeOn(Schedulers.io())
+    public void downloadFile(Observable<ResponseBody> responseBodyObservable,String filePath) {
+    final Disposable disposable =  responseBodyObservable.observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .map(new Function<ResponseBody, Boolean>() {
-                    @Override
-                    public Boolean apply(ResponseBody responseBody) throws Throwable {
-                        return saveFileByResponseBody(responseBody, "");
-                    }
-                }).subscribe(new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean aBoolean) throws Throwable {
-
-            }
-        });
+                .map(responseBody -> saveFileByResponseBody(responseBody, filePath))
+                .subscribe(aBoolean -> Log.d(TAG, "accept: "));
+          compositeDisposable.add(disposable);
 
     }
 

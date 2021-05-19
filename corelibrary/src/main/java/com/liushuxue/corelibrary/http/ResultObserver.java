@@ -7,8 +7,6 @@ import com.liushuxue.corelibrary.event.LoginEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.net.ConnectException;
-import java.net.NoRouteToHostException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -46,7 +44,7 @@ public abstract class ResultObserver<T> extends DisposableObserver<BaseResultBea
 
     //异常处理
     private void handleException(Throwable e) {
-        String errorMessage = "";
+        String errorMessage;
         if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
             errorMessage = httpException.message();
