@@ -5,6 +5,7 @@ import com.liushuxue.corelibrary.constant.Config;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -30,7 +31,7 @@ public class RetrofitHelper {
 
     private void createRetrofit() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(Config.BASE_URL)
+                .baseUrl(Config.HttpConfig.BASE_URL)
                 .client(createClient())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -38,10 +39,13 @@ public class RetrofitHelper {
     }
 
     private OkHttpClient createClient() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         return new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .callTimeout(15, TimeUnit.SECONDS)
-                .addInterceptor(new RequestInterceptor())
+                .addInterceptor(loggingInterceptor)
+                .addInterceptor(new RequestUrlInterceptor())
                 .build();
     }
 

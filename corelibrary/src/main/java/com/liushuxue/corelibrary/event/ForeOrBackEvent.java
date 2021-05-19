@@ -6,4 +6,8 @@ public class ForeOrBackEvent {
     public ForeOrBackEvent(boolean isFore) {
         this.isFore = isFore;
     }
+
+    public boolean isFore() {
+        return isFore;
+    }
 }

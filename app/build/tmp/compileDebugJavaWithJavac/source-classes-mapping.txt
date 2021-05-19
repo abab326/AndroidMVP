@@ -1,0 +1,13 @@
+com/liushuxue/mvpdemo/model/MainModel.java
+ com.liushuxue.mvpdemo.model.MainModel
+com/liushuxue/mvpdemo/contract/IMainContract.java
+ com.liushuxue.mvpdemo.contract.IMainContract
+ com.liushuxue.mvpdemo.contract.IMainContract$Model
+ com.liushuxue.mvpdemo.contract.IMainContract$Presenter
+ com.liushuxue.mvpdemo.contract.IMainContract$View
+com/liushuxue/mvpdemo/view/MainActivity.java
+ com.liushuxue.mvpdemo.view.MainActivity
+com/liushuxue/mvpdemo/BuildConfig.java
+ com.liushuxue.mvpdemo.BuildConfig
+com/liushuxue/mvpdemo/presenter/MainPresenter.java
+ com.liushuxue.mvpdemo.presenter.MainPresenter

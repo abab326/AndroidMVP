@@ -72,6 +72,10 @@
         "source": "D:\\android_projects\\MVPDemo\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
     },
     {
+        "merged": "D:\\android_projects\\MVPDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout_activitymain.xml.flat",
+        "source": "D:\\android_projects\\MVPDemo\\app\\src\\main\\res\\layout\\activitymain.xml"
+    },
+    {
         "merged": "D:\\android_projects\\MVPDemo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "D:\\android_projects\\MVPDemo\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
