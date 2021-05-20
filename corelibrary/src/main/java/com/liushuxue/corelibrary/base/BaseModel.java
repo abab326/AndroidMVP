@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.liushuxue.corelibrary.http.ResultObserver;
 import com.liushuxue.corelibrary.mvp.IModel;
+import com.liushuxue.corelibrary.util.ImageUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,7 +23,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
 public abstract class BaseModel implements IModel {
-    public static final String TAG ="BaseModel";
+    public static final String TAG = "BaseModel";
     protected CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     /**
@@ -33,9 +34,19 @@ public abstract class BaseModel implements IModel {
      * @param <T>               返回实体对象
      */
     public <T> void httpRequest(Observable<BaseResultBean<T>> requestObservable, OnHttpRequestCallback<T> callback) {
+        this.httpRequest(requestObservable, callback, true);
+    }
+
+    /**
+     * @param requestObservable 请求对象
+     * @param callback          回调方法
+     * @param autoShowErrorMsg  是否自动显示错误信息
+     * @param <T>               返回实体对象
+     */
+    public <T> void httpRequest(Observable<BaseResultBean<T>> requestObservable, OnHttpRequestCallback<T> callback, boolean autoShowErrorMsg) {
         requestObservable.observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ResultObserver<T>() {
+                .subscribe(new ResultObserver<T>(autoShowErrorMsg) {
                     @Override
                     protected void onStart() {
                         super.onStart();
@@ -62,45 +73,12 @@ public abstract class BaseModel implements IModel {
     }
 
 
-    public void downloadFile(Observable<ResponseBody> responseBodyObservable,String filePath) {
-    final Disposable disposable =  responseBodyObservable.observeOn(Schedulers.io())
+    public void downloadFile(Observable<ResponseBody> responseBodyObservable, String filePath) {
+        final Disposable disposable = responseBodyObservable.observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .map(responseBody -> saveFileByResponseBody(responseBody, filePath))
+                .map(responseBody -> ImageUtils.saveFileByInputStream(responseBody.byteStream(), filePath))
                 .subscribe(aBoolean -> Log.d(TAG, "accept: "));
-          compositeDisposable.add(disposable);
-
-    }
-
-    /**
-     * 下载文件保存到本地
-     *
-     * @param responseBody 请求返回数据
-     * @param filePath     保存文件路径
-     */
-    protected Boolean saveFileByResponseBody(ResponseBody responseBody, String filePath) {
-        try {
-            File futureStudioIconFile = new File(filePath);
-            InputStream inputStream = responseBody.byteStream();
-            OutputStream outputStream = new FileOutputStream(futureStudioIconFile);
-            byte[] fileReader = new byte[4096];
-            while (true) {
-                int read = inputStream.read(fileReader);
-                if (read == -1) {
-                    break;
-                }
-                outputStream.write(fileReader, 0, read);
-            }
-            outputStream.flush();
-            inputStream.close();
-            outputStream.close();
-            return true;
-        } catch (FileNotFoundException e) {
-
-            return false;
-        } catch (IOException e) {
-            return false;
-        }
-
+        compositeDisposable.add(disposable);
 
     }
 

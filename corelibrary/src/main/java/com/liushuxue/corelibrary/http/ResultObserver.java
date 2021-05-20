@@ -1,7 +1,9 @@
 package com.liushuxue.corelibrary.http;
 
 import android.accounts.NetworkErrorException;
+import android.widget.Toast;
 
+import com.liushuxue.corelibrary.base.BaseApplication;
 import com.liushuxue.corelibrary.base.BaseResultBean;
 import com.liushuxue.corelibrary.event.LoginEvent;
 
@@ -17,6 +19,12 @@ import io.reactivex.rxjava3.observers.DisposableObserver;
 import retrofit2.HttpException;
 
 public abstract class ResultObserver<T> extends DisposableObserver<BaseResultBean<T>> {
+    // 是否自动显示错误信息
+    private boolean autoShowErrorMsg;
+
+    public ResultObserver(boolean autoShowErrorMsg) {
+        this.autoShowErrorMsg = autoShowErrorMsg;
+    }
 
     @Override
     public void onNext(@NonNull BaseResultBean<T> tBaseResultBean) {
@@ -27,6 +35,7 @@ public abstract class ResultObserver<T> extends DisposableObserver<BaseResultBea
             // 业务正常返回数据
             EventBus.getDefault().post(new LoginEvent(false));
         } else {
+            showErrorMsg(tBaseResultBean.getMessage());
             onFailed(tBaseResultBean.getMessage());
         }
     }
@@ -57,7 +66,13 @@ public abstract class ResultObserver<T> extends DisposableObserver<BaseResultBea
         } else {
             errorMessage = e.getMessage();
         }
+        showErrorMsg(errorMessage);
         onFailed(errorMessage);
+    }
+
+    public void showErrorMsg(String message) {
+        if (autoShowErrorMsg)
+            Toast.makeText(BaseApplication.getInstance(), message, Toast.LENGTH_SHORT).show();
     }
 
     public abstract void onSuccess(T data);
