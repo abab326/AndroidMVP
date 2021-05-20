@@ -8,26 +8,31 @@ import com.liushuxue.corelibrary.mvp.IView;
 
 import java.lang.ref.WeakReference;
 
-public abstract class BasePresenter<V extends IView, M extends IModel> implements IPresenter<V> {
+public abstract class BasePresenter<V extends IView, M extends BaseModel> implements IPresenter<V> {
     protected WeakReference<V> weakReference;
-    protected M model;
+    protected M baseModel;
 
     @Override
 
     public void attachView(V view) {
         weakReference = new WeakReference<V>(view);
-        if (model == null) {
-            model = createModel();
+        if (baseModel == null) {
+            baseModel = createModel();
         }
     }
 
     protected abstract M createModel();
+
+    protected abstract void initPresenter();
 
     @Override
     public void destroyed() {
         if (weakReference != null) {
             weakReference.clear();
             weakReference = null;
+        }
+        if (baseModel != null) {
+            baseModel.clearAllRequest();
         }
     }
 

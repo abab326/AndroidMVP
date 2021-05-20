@@ -25,6 +25,7 @@ import okhttp3.ResponseBody;
 public abstract class BaseModel implements IModel {
     public static final String TAG = "BaseModel";
     protected CompositeDisposable compositeDisposable = new CompositeDisposable();
+    protected Disposable currentDisposable;
 
     /**
      * 网络请求 通用类
@@ -50,6 +51,7 @@ public abstract class BaseModel implements IModel {
                     @Override
                     protected void onStart() {
                         super.onStart();
+                        currentDisposable = this;
                         compositeDisposable.add(this);
                     }
 
@@ -91,6 +93,13 @@ public abstract class BaseModel implements IModel {
 
             }
         }
+    }
 
+    @Override
+    public void cancelCurrentRequest() {
+        if (currentDisposable != null && compositeDisposable.isDisposed()) {
+            currentDisposable.dispose();
+            currentDisposable = null;
+        }
     }
 }
