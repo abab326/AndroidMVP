@@ -6,19 +6,10 @@ import com.liushuxue.corelibrary.http.ResultObserver;
 import com.liushuxue.corelibrary.mvp.IModel;
 import com.liushuxue.corelibrary.util.ImageUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
@@ -78,7 +69,7 @@ public abstract class BaseModel implements IModel {
     public void downloadFile(Observable<ResponseBody> responseBodyObservable, String filePath) {
         final Disposable disposable = responseBodyObservable.observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .map(responseBody -> ImageUtils.saveFileByInputStream(responseBody.byteStream(), filePath))
+                .map(responseBody -> ImageUtils.saveInputStreamAsFile(responseBody.byteStream(), filePath))
                 .subscribe(aBoolean -> Log.d(TAG, "accept: "));
         compositeDisposable.add(disposable);
 

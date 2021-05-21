@@ -4,7 +4,9 @@ import com.liushuxue.corelibrary.constant.Config;
 
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
