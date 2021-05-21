@@ -66,10 +66,10 @@ public abstract class BaseModel implements IModel {
     }
 
 
-    public void downloadFile(Observable<ResponseBody> responseBodyObservable, String filePath) {
+    public void downloadFile(Observable<ResponseBody> responseBodyObservable, String filePath, String fileName) {
         final Disposable disposable = responseBodyObservable.observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .map(responseBody -> ImageUtils.saveInputStreamAsFile(responseBody.byteStream(), filePath))
+                .map(responseBody -> ImageUtils.saveInputStreamAsFile(BaseApplication.getInstance(), responseBody.byteStream(), filePath, fileName))
                 .subscribe(aBoolean -> Log.d(TAG, "accept: "));
         compositeDisposable.add(disposable);
 
