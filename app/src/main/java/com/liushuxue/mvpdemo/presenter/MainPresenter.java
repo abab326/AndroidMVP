@@ -19,5 +19,10 @@ public class MainPresenter extends BasePresenter<IMainContract.View, MainModel> 
     protected MainModel createModel() {
         return new MainModel();
     }
+
+    @Override
+    protected void initPresenter() {
+
+    }
 }
 
