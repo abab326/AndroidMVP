@@ -6,8 +6,8 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="16"
-8-->D:\android_projects\MVPDemo\corelibrary\src\main\AndroidManifest.xml
+8-->/Users/liushuxue/AndroidStudioProjects/AndroidMVP/corelibrary/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="30" />
-9-->D:\android_projects\MVPDemo\corelibrary\src\main\AndroidManifest.xml
+9-->/Users/liushuxue/AndroidStudioProjects/AndroidMVP/corelibrary/src/main/AndroidManifest.xml
 10
 11</manifest>

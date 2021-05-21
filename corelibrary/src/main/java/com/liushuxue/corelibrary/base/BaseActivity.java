@@ -1,6 +1,5 @@
 package com.liushuxue.corelibrary.base;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -47,8 +46,11 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
 
     @Override
     public void showLoading(String message) {
+        if (isFinishing()) {
+            return;
+        }
         if (null == loadingDialog) {
-            loadingDialog = new XPopup.Builder(this).asLoading(message);
+            loadingDialog = new XPopup.Builder(this).asLoading(message).;
         } else {
             loadingDialog.setTitle(message);
         }
