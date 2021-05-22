@@ -918,6 +918,7 @@ int color test_mtrl_calendar_day 0x0
 int color test_mtrl_calendar_day_selected 0x0
 int color tooltip_background_dark 0x0
 int color tooltip_background_light 0x0
+int color white 0x0
 int dimen abc_action_bar_content_inset_material 0x0
 int dimen abc_action_bar_content_inset_with_nav 0x0
 int dimen abc_action_bar_default_height_material 0x0
@@ -1449,6 +1450,8 @@ int id alertTitle 0x0
 int id async 0x0
 int id attachPopupContainer 0x0
 int id auto 0x0
+int id base_content 0x0
+int id base_error 0x0
 int id blocking 0x0
 int id bottom 0x0
 int id bottomPopupContainer 0x0
@@ -1733,6 +1736,7 @@ int layout abc_search_dropdown_item_icons_2line 0x0
 int layout abc_search_view 0x0
 int layout abc_select_dialog_material 0x0
 int layout abc_tooltip 0x0
+int layout activity_base 0x0
 int layout custom_dialog 0x0
 int layout design_bottom_navigation_item 0x0
 int layout design_bottom_sheet_dialog 0x0
@@ -1849,6 +1853,7 @@ int string character_counter_overflowed_content_description 0x0
 int string character_counter_pattern 0x0
 int string chip_text 0x0
 int string clear_text_end_icon_content_description 0x0
+int string contentDescription 0x0
 int string error_icon_content_description 0x0
 int string exposed_dropdown_menu_content_description 0x0
 int string fab_transformation_scrim_behavior 0x0

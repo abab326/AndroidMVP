@@ -19,7 +19,13 @@ import androidx.core.view.ViewCompat;
  * @createTime 2021/5/22
  */
 public class StatusBarUtils {
-
+    /**
+     * 设置状态栏颜色
+     *
+      * @param activity 上下文
+     * @param color 颜色
+     * @param isBlack 是否黑色文字
+     */
     public static void setStatusBarColor(Activity activity, int color, boolean isBlack) {
         // 设置状态栏颜色
         Window window = activity.getWindow();

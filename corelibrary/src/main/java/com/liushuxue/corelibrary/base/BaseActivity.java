@@ -3,7 +3,9 @@ package com.liushuxue.corelibrary.base;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,12 +15,14 @@ import com.liushuxue.corelibrary.broadcast.NetWorkStateReceiver;
 import com.liushuxue.corelibrary.enums.NetworkType;
 import com.liushuxue.corelibrary.mvp.IPresenter;
 import com.liushuxue.corelibrary.mvp.IView;
+import com.liushuxue.corelibrary.util.SPUtils;
 import com.liushuxue.corelibrary.util.StatusBarUtils;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.impl.LoadingPopupView;
 
 public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IView, NetWorkStateReceiver.OnNetworkChangeListener {
     protected final String TAG = this.getClass().getName();
+    private FrameLayout baseContentView;
     private LoadingPopupView loadingDialog;
     private NetWorkStateReceiver netWorkStateReceiver;
     // 状态栏颜色
@@ -31,12 +35,16 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_base);
+        baseContentView = findViewById(R.id.base_content);
+        int dataValue= SPUtils.get(this,"aa",12);
         netWorkStateReceiver = new NetWorkStateReceiver(this);
         //状态栏设置
         statusBarColor = getResources().getColor(R.color.statusColor);
         StatusBarUtils.setStatusBarColor(this, statusBarColor, isBlackStatusBarText);
         if (getLayoutId()>0){
-           setContentView(getLayoutId());
+            baseContentView.removeAllViews();
+            LayoutInflater.from(this).inflate(getLayoutId(),baseContentView,false);
         }
         if (null == presenter) {
             presenter = createPresenter();

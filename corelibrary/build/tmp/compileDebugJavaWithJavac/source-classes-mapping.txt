@@ -4,8 +4,8 @@ com/liushuxue/corelibrary/base/BaseResultBean.java
  com.liushuxue.corelibrary.base.BaseResultBean
 com/liushuxue/corelibrary/base/BasePresenter.java
  com.liushuxue.corelibrary.base.BasePresenter
-com/liushuxue/corelibrary/base/BaseActivity.java
- com.liushuxue.corelibrary.base.BaseActivity
+com/liushuxue/corelibrary/util/StatusBarUtils.java
+ com.liushuxue.corelibrary.util.StatusBarUtils
 com/liushuxue/corelibrary/http/RetrofitHelper.java
  com.liushuxue.corelibrary.http.RetrofitHelper
 com/liushuxue/corelibrary/event/ForeOrBackEvent.java
@@ -20,8 +20,8 @@ com/liushuxue/corelibrary/helper/ActivityManagerHelper.java
  com.liushuxue.corelibrary.helper.ActivityManagerHelper
 com/liushuxue/corelibrary/constant/SPKey.java
  com.liushuxue.corelibrary.constant.SPKey
-com/liushuxue/corelibrary/util/ToastUtils.java
- com.liushuxue.corelibrary.util.ToastUtils
+com/liushuxue/corelibrary/event/LoginEvent.java
+ com.liushuxue.corelibrary.event.LoginEvent
 com/liushuxue/corelibrary/http/RequestHeaderInterceptor.java
  com.liushuxue.corelibrary.http.RequestHeaderInterceptor
 com/liushuxue/corelibrary/http/ResultObserver.java
@@ -43,7 +43,14 @@ com/liushuxue/corelibrary/constant/Config.java
 com/liushuxue/corelibrary/mvp/IModel.java
  com.liushuxue.corelibrary.mvp.IModel
  com.liushuxue.corelibrary.mvp.IModel$OnHttpRequestCallback
-com/liushuxue/corelibrary/util/StatusBarUtils.java
- com.liushuxue.corelibrary.util.StatusBarUtils
-com/liushuxue/corelibrary/event/LoginEvent.java
- com.liushuxue.corelibrary.event.LoginEvent
+com/liushuxue/corelibrary/broadcast/NetWorkStateReceiver.java
+ com.liushuxue.corelibrary.broadcast.NetWorkStateReceiver
+ com.liushuxue.corelibrary.broadcast.NetWorkStateReceiver$OnNetworkChangeListener
+com/liushuxue/corelibrary/util/ToastUtils.java
+ com.liushuxue.corelibrary.util.ToastUtils
+com/liushuxue/corelibrary/base/BaseActivity.java
+ com.liushuxue.corelibrary.base.BaseActivity
+com/liushuxue/corelibrary/util/NetworkUtil.java
+ com.liushuxue.corelibrary.util.NetworkUtil
+com/liushuxue/corelibrary/enums/NetworkType.java
+ com.liushuxue.corelibrary.enums.NetworkType

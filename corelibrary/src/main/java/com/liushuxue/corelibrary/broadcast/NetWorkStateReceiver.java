@@ -18,7 +18,7 @@ import com.liushuxue.corelibrary.util.NetworkUtil;
  * @createTime 2021/5/22
  */
 public class NetWorkStateReceiver extends BroadcastReceiver {
-    private OnNetworkChangeListener onNetworkChangeListener;
+    private final OnNetworkChangeListener onNetworkChangeListener;
 
     public NetWorkStateReceiver(OnNetworkChangeListener onNetworkChangeListener) {
         this.onNetworkChangeListener = onNetworkChangeListener;
