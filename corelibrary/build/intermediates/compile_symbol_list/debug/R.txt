@@ -907,6 +907,7 @@ int color secondary_text_default_material_dark 0x0
 int color secondary_text_default_material_light 0x0
 int color secondary_text_disabled_material_dark 0x0
 int color secondary_text_disabled_material_light 0x0
+int color statusColor 0x0
 int color switch_thumb_disabled_material_dark 0x0
 int color switch_thumb_disabled_material_light 0x0
 int color switch_thumb_material_dark 0x0

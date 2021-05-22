@@ -52,6 +52,8 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     // xpopup
     api rootProject.ext.dependencies["xpopup"]
+    // logger
+    api rootProject.ext.dependencies["logger"]
     // Luban
     api rootProject.ext.dependencies["Luban"]
     // Test

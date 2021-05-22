@@ -43,5 +43,7 @@ com/liushuxue/corelibrary/constant/Config.java
 com/liushuxue/corelibrary/mvp/IModel.java
  com.liushuxue.corelibrary.mvp.IModel
  com.liushuxue.corelibrary.mvp.IModel$OnHttpRequestCallback
+com/liushuxue/corelibrary/util/StatusBarUtils.java
+ com.liushuxue.corelibrary.util.StatusBarUtils
 com/liushuxue/corelibrary/event/LoginEvent.java
  com.liushuxue.corelibrary.event.LoginEvent
