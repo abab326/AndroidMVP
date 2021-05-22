@@ -1,13 +1,11 @@
 package com.liushuxue.corelibrary.util;
 
 import android.content.Context;
-import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.RequiresPermission;
-
 import com.liushuxue.corelibrary.enums.NetworkType;
 
 /**
@@ -93,6 +91,4 @@ public class NetworkUtil {
         }
         return netType;
     }
-
-
 }

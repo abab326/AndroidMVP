@@ -3,6 +3,7 @@ package com.liushuxue.corelibrary.base;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.impl.LoadingPopupView;
 
 public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IView, NetWorkStateReceiver.OnNetworkChangeListener {
+    protected final String TAG = this.getClass().getName();
     private LoadingPopupView loadingDialog;
     private NetWorkStateReceiver netWorkStateReceiver;
     // 状态栏颜色
@@ -26,7 +28,6 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     protected P presenter;
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,9 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
         //状态栏设置
         statusBarColor = getResources().getColor(R.color.statusColor);
         StatusBarUtils.setStatusBarColor(this, statusBarColor, isBlackStatusBarText);
-        setContentView(getLayoutId());
+        if (getLayoutId()>0){
+           setContentView(getLayoutId());
+        }
         if (null == presenter) {
             presenter = createPresenter();
             presenter.attachView(this);
