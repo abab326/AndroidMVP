@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.liushuxue.corelibrary.base.BaseApplication;
 import com.liushuxue.corelibrary.base.BaseResultBean;
 import com.liushuxue.corelibrary.event.LoginEvent;
+import com.liushuxue.corelibrary.util.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -42,7 +43,9 @@ public abstract class ResultObserver<T> extends DisposableObserver<BaseResultBea
 
     @Override
     public void onError(@NonNull Throwable e) {
-        handleException(e);
+        String errorMsg = ThrowableHandle.handleException(e);
+        showErrorMsg(errorMsg);
+        onFailed(errorMsg);
     }
 
 
@@ -51,28 +54,10 @@ public abstract class ResultObserver<T> extends DisposableObserver<BaseResultBea
 
     }
 
-    //异常处理
-    private void handleException(Throwable e) {
-        String errorMessage;
-        if (e instanceof HttpException) {
-            HttpException httpException = (HttpException) e;
-            errorMessage = httpException.message();
-        } else if (e instanceof NetworkErrorException
-                || e instanceof SocketTimeoutException
-                || e instanceof SocketException
-                || e instanceof UnknownHostException
-                || e instanceof TimeoutException) {
-            errorMessage = "网络错误";
-        } else {
-            errorMessage = e.getMessage();
-        }
-        showErrorMsg(errorMessage);
-        onFailed(errorMessage);
-    }
 
     public void showErrorMsg(String message) {
         if (autoShowErrorMsg)
-            Toast.makeText(BaseApplication.getInstance(), message, Toast.LENGTH_SHORT).show();
+            ToastUtils.show(message);
     }
 
     public abstract void onSuccess(T data);

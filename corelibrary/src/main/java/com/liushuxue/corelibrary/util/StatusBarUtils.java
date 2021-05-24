@@ -22,9 +22,9 @@ public class StatusBarUtils {
     /**
      * 设置状态栏颜色
      *
-      * @param activity 上下文
-     * @param color 颜色
-     * @param isBlack 是否黑色文字
+     * @param activity 上下文
+     * @param color    颜色
+     * @param isBlack  是否黑色文字
      */
     public static void setStatusBarColor(Activity activity, int color, boolean isBlack) {
         // 设置状态栏颜色
@@ -34,6 +34,7 @@ public class StatusBarUtils {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(color);
         }
+        window.getDecorView().setFitsSystemWindows(false);
         //设置文字颜色
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (isBlack) {
@@ -52,7 +53,7 @@ public class StatusBarUtils {
      * 设置一个状态栏一样高度的View
      *
      * @param activity 目标页面
-     * @param color 颜色
+     * @param color    颜色
      */
     private static void setStatusBarView(Activity activity, int color) {
         ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();

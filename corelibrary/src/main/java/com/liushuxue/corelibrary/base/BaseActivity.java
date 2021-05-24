@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +18,16 @@ import com.liushuxue.corelibrary.mvp.IPresenter;
 import com.liushuxue.corelibrary.mvp.IView;
 import com.liushuxue.corelibrary.util.SPUtils;
 import com.liushuxue.corelibrary.util.StatusBarUtils;
+import com.liushuxue.corelibrary.util.ToastUtils;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.impl.LoadingPopupView;
+
+import butterknife.ButterKnife;
 
 public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IView, NetWorkStateReceiver.OnNetworkChangeListener {
     protected final String TAG = this.getClass().getName();
     private FrameLayout baseContentView;
+    private LinearLayout networkErrorView;
     private LoadingPopupView loadingDialog;
     private NetWorkStateReceiver netWorkStateReceiver;
     // 状态栏颜色
@@ -37,15 +42,18 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         baseContentView = findViewById(R.id.base_content);
-        int dataValue= SPUtils.get(this,"aa",12);
+        networkErrorView = findViewById(R.id.base_network_error);
+        int dataValue = (int) SPUtils.get(this, "aa", 12);
         netWorkStateReceiver = new NetWorkStateReceiver(this);
         //状态栏设置
         statusBarColor = getResources().getColor(R.color.statusColor);
         StatusBarUtils.setStatusBarColor(this, statusBarColor, isBlackStatusBarText);
-        if (getLayoutId()>0){
+        if (getLayoutId() > 0) {
             baseContentView.removeAllViews();
-            LayoutInflater.from(this).inflate(getLayoutId(),baseContentView,false);
+            View contentView = LayoutInflater.from(this).inflate(getLayoutId(), baseContentView, false);
+            baseContentView.addView(contentView);
         }
+        ButterKnife.bind(this);
         if (null == presenter) {
             presenter = createPresenter();
             presenter.attachView(this);
@@ -73,14 +81,15 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
         }
     }
 
-    public void registerNetworkReceiver(){
+    public void registerNetworkReceiver() {
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver( netWorkStateReceiver,intentFilter);
+        registerReceiver(netWorkStateReceiver, intentFilter);
     }
 
-    public void unRegisterNetworkReceiver(){
+    public void unRegisterNetworkReceiver() {
         unregisterReceiver(netWorkStateReceiver);
     }
+
     protected abstract void initView();
 
     protected abstract P createPresenter();
@@ -120,7 +129,14 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
 
     @Override
     public void onNetworkChange(NetworkType networkType) {
-
+        if (networkType == NetworkType.NETWORK_UNKNOWN) {
+            networkErrorView.setVisibility(View.VISIBLE);
+        } else {
+            networkErrorView.setVisibility(View.GONE);
+            if (networkType == NetworkType.NETWORK_2G) {
+                ToastUtils.show("当前网络不佳");
+            }
+        }
     }
 
     public int getStatusBarColor() {
@@ -144,7 +160,8 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
 
     /**
      * 更新状态栏
-     * @param statusBarColor 状态栏颜色
+     *
+     * @param statusBarColor       状态栏颜色
      * @param isBlackStatusBarText 是否为黑色字
      */
     public void notifyStatusBar(int statusBarColor, boolean isBlackStatusBarText) {

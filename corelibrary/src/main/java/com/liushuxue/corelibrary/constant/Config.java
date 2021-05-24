@@ -11,10 +11,10 @@ public class Config {
         // file
         public static final String URL_NAME_FILE = "url_name_file";
         // 基础请求地址
-        public static final String BASE_URL = "";
+        public static final String BASE_URL = "https://www.baidu.com/";
         // HOME 模块请求地址
-        public static final String BASE_URL_HOME = "";
+        public static final String BASE_URL_HOME = "https://www.baidu.com/";
         // 文件上传请求地址
-        public static final String BASE_URL_FILE = "";
+        public static final String BASE_URL_FILE = "https://www.baidu.com/";
     }
 }

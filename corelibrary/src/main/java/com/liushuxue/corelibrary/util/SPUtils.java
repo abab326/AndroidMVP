@@ -46,11 +46,24 @@ public class SPUtils {
      * @param defaultObject 默认值
      * @return 返回结果
      */
-    public static <T> T get(Context context, String key, T defaultObject) {
+    public static Object get(Context context, String key, Object defaultObject) {
         try {
             SharedPreferences sp = getInstance(context);
-            return  (T) sp.getAll().get(key);
-        } catch (NullPointerException e) {
+            if (defaultObject instanceof String) {
+                return sp.getString(key, (String) defaultObject);
+            } else if (defaultObject instanceof Integer) {
+                return sp.getInt(key, (Integer) defaultObject);
+            } else if (defaultObject instanceof Float) {
+                return sp.getFloat(key, (Float) defaultObject);
+            } else if (defaultObject instanceof Long) {
+                return sp.getLong(key, (Long) defaultObject);
+            } else if (defaultObject instanceof Boolean) {
+                return sp.getBoolean(key, (Boolean) defaultObject);
+            } else {
+                return defaultObject;
+            }
+
+        } catch (Exception e) {
             return defaultObject;
         }
 

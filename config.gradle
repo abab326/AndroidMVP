@@ -30,7 +30,7 @@ ext {
             "espresso"               : "androidx.test.espresso:espresso-core:3.2.0",
             // retrofit
             "retrofit"               : "com.squareup.retrofit2:retrofit:${versionCode.retrofit}",
-            "retrofit-adapter-rxjava": "com.squareup.retrofit2:adapter-rxjava:${versionCode.retrofit}",
+            "retrofit-adapter-rxjava": "com.squareup.retrofit2:adapter-rxjava3:${versionCode.retrofit}",
             "retrofit-converter-gson": "com.squareup.retrofit2:converter-gson:${versionCode.retrofit}",
             "okhttp-logging"         : "com.squareup.okhttp3:logging-interceptor:4.9.1",
             "okhttp3"                : 'com.squareup.okhttp3:okhttp:jar:4.9.1',
