@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.liushuxue.corelibrary.http.ResultObserver;
+import com.liushuxue.corelibrary.http.RetrofitHelper;
 import com.liushuxue.corelibrary.http.ThrowableHandle;
 import com.liushuxue.corelibrary.mvp.IModel;
 import com.liushuxue.corelibrary.util.ImageUtils;
@@ -23,6 +24,11 @@ public abstract class BaseModel implements IModel {
     public static final String TAG = "BaseModel";
     protected CompositeDisposable compositeDisposable = new CompositeDisposable();
     protected Disposable currentDisposable;
+
+    protected <Api extends BaseServiceApi> Api getHttp(Class<Api> apiClass) {
+        return RetrofitHelper.getInstance().serviceApi(apiClass);
+    }
+
 
     /**
      * 网络请求 通用类

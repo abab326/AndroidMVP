@@ -23,7 +23,7 @@ public class MainModel extends BaseModel implements IMainContract.Model {
 
     @Override
     public void getImage(OnHttpRequestCallback<Bitmap> callback) {
-        Observable<ResponseBody> observable = RetrofitHelper.getInstance().serviceApi(ServiceApi.class).getImage();
+        Observable<ResponseBody> observable =getHttp(ServiceApi.class).getImage();
         downloadFile(observable,callback,true);
     }
 }
