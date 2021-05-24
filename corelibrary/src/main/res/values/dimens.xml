@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--字体大小单位-->
+    <dimen name="ts_10">10sp</dimen>
+    <!--控件大小单位-->
+    <dimen name="dp_12">12dp</dimen>
+
+</resources>

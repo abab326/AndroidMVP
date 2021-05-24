@@ -1,5 +1,13 @@
 package com.liushuxue.mvpdemo.view;
 
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+
+import androidx.annotation.Nullable;
+
 import com.liushuxue.corelibrary.mvp.IPresenter;
 import com.liushuxue.mvpdemo.R;
 import com.liushuxue.mvpdemo.contract.IMainContract;
@@ -14,10 +22,15 @@ import com.liushuxue.mvpdemo.presenter.MainPresenter;
  */
 
 public class MainActivity extends BaseActivity<MainPresenter> implements IMainContract.View {
+    @Override
+    protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     protected void initView() {
-
+        notifyStatusBar(Color.WHITE, true);
     }
 
     @Override

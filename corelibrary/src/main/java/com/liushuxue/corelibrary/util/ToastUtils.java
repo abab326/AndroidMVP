@@ -14,14 +14,11 @@ public class ToastUtils {
     public static void show(String message, int duration) {
         if (null == mToast) {
             mToast = Toast.makeText(BaseApplication.getInstance().getApplicationContext(), message, duration);
-            mToast.show();
         } else {
             mToast.cancel();
             mToast.setDuration(duration);
             mToast.setText(message);
-            mToast.show();
         }
-
-
+        mToast.show();
     }
 }

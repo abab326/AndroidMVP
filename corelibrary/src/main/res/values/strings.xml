@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="contentDescription">图片内容</string>
+    <string name="no_network">当前无可用网络</string>
+</resources>

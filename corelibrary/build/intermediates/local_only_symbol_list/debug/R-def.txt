@@ -1,2 +1,8 @@
 R_DEF: Internal format may change without notice
 local
+color statusColor
+color white
+id base_content
+id base_error
+layout activity_base
+string contentDescription
