@@ -191,7 +191,7 @@ public class ImageUtils {
                 outputStream = activity.getContentResolver().openOutputStream(queryUri);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (@SuppressLint("NewApi") RecoverableSecurityException recoverableSecurityException) {
+            } catch (@SuppressLint({"NewApi", "LocalSuppress"}) RecoverableSecurityException recoverableSecurityException) {
 
                 try {
                     activity.startIntentSenderForResult(
@@ -214,7 +214,7 @@ public class ImageUtils {
      *
      * @param mContext 上下文
      * @param file     图片文件
-     * @return
+     * @return true 保存成功
      */
     public static boolean scanFile(Context mContext, File file) {
         String mimeType = getMimeType(file);
@@ -261,15 +261,26 @@ public class ImageUtils {
     /**
      * 获取文件 uri 路径
      *
-     * @param context
-     * @param filePath
-     * @return
+     * @param context 上下文
+     * @param filePath 文件路径
+     * @return 文件 uri
      */
     public static Uri toUri(Context context, String filePath) {
+        return toUri(context, new File(filePath));
+    }
+
+    /**
+     * 获取文件 uri 路径
+     *
+     * @param context 上下文
+     * @param file 文件
+     * @return 文件 uri
+     */
+    public static Uri toUri(Context context, File file) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return FileProvider.getUriForFile(context, context.getApplicationInfo().packageName + ".fileprovider", new File(filePath));
+            return FileProvider.getUriForFile(context, context.getApplicationInfo().packageName + ".fileProvider", file);
         }
-        return Uri.fromFile(new File(filePath));
+        return Uri.fromFile(file);
     }
 
 }

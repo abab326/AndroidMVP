@@ -99,11 +99,10 @@ public abstract class BaseModel implements IModel {
                     public void onNext(@NonNull ResponseBody responseBody) {
                         if (callback != null) {
                             BitmapFactory.Options options = new BitmapFactory.Options();
-                            options.inJustDecodeBounds = true;
+                            options.inJustDecodeBounds = false;
                             Bitmap bitmap
                                     = BitmapFactory.decodeStream(responseBody.byteStream(), null, options);
-                            Logger.d(options.outWidth + "     ");
-                            Logger.d( options.outHeight + "");
+
                             callback.onSuccess(bitmap);
                         }
                     }
