@@ -10,6 +10,7 @@ import com.liushuxue.corelibrary.http.ThrowableHandle;
 import com.liushuxue.corelibrary.mvp.IModel;
 import com.liushuxue.corelibrary.util.ImageUtils;
 import com.liushuxue.corelibrary.util.ToastUtils;
+import com.orhanobut.logger.Logger;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -97,7 +98,12 @@ public abstract class BaseModel implements IModel {
                     @Override
                     public void onNext(@NonNull ResponseBody responseBody) {
                         if (callback != null) {
-                            Bitmap bitmap = BitmapFactory.decodeStream(responseBody.byteStream());
+                            BitmapFactory.Options options = new BitmapFactory.Options();
+                            options.inJustDecodeBounds = true;
+                            Bitmap bitmap
+                                    = BitmapFactory.decodeStream(responseBody.byteStream(), null, options);
+                            Logger.d(options.outWidth + "     ");
+                            Logger.d( options.outHeight + "");
                             callback.onSuccess(bitmap);
                         }
                     }

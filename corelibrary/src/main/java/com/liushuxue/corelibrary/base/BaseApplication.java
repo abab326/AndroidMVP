@@ -7,6 +7,8 @@ import androidx.multidex.MultiDex;
 
 import com.liushuxue.corelibrary.helper.ActivityManagerHelper;
 import com.liushuxue.corelibrary.impl.ActivityLifecycleCallbacksImpl;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 public class BaseApplication extends Application {
     private static BaseApplication baseApplication;
@@ -30,7 +32,7 @@ public class BaseApplication extends Application {
         activityManagerHelper = new ActivityManagerHelper();
         callbacks = new ActivityLifecycleCallbacksImpl(activityManagerHelper);
         registerActivityLifecycleCallbacks(callbacks);
-
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
 }

@@ -46,11 +46,11 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
         baseContainer = findViewById(R.id.base_container);
         baseContentView = findViewById(R.id.base_content);
         networkErrorView = findViewById(R.id.base_network_error);
-        fitsSystemWindowsAble(false);
+        fitsSystemWindowsAble(true);
         int dataValue = (int) SPUtils.get(this, "aa", 12);
         netWorkStateReceiver = new NetWorkStateReceiver(this);
-        //状态栏设置
-        statusBarColor = getResources().getColor(R.color.statusColor);
+        //默认状态栏设置
+        statusBarColor = getResources().getColor(R.color.purple_500);
         StatusBarUtils.setStatusBarColor(this, statusBarColor, isBlackStatusBarText);
         if (getLayoutId() > 0) {
             baseContentView.removeAllViews();

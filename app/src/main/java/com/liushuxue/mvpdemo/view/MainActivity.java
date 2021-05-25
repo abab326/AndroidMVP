@@ -24,8 +24,11 @@ import com.liushuxue.mvpdemo.R;
 import com.liushuxue.mvpdemo.contract.IMainContract;
 import com.liushuxue.corelibrary.base.BaseActivity;
 import com.liushuxue.mvpdemo.presenter.MainPresenter;
+import com.orhanobut.logger.Logger;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -41,15 +44,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainCo
     @BindView(R.id.imageView2)
     ImageView imageView2;
 
-    @Override
-    protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     protected void initView() {
-        RoundedCorners roundedCorners = new RoundedCorners(DisplayUtils.dip2px(this,8));
-        notifyStatusBar(Color.TRANSPARENT, true);
+        notifyStatusBar(getResources().getColor(R.color.teal_200), false);
+        RoundedCorners roundedCorners = new RoundedCorners(DisplayUtils.dip2px(this, 8));
         Glide.with(this)
                 .load("https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF")
                 .transform(roundedCorners)
@@ -68,6 +67,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainCo
 
     @Override
     public void getImageSuccess(Bitmap bitmap) {
+     
         ImageView imageView = findViewById(R.id.imageView);
         imageView.setImageBitmap(bitmap);
     }
