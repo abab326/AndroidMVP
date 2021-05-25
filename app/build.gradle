@@ -34,6 +34,7 @@ dependencies {
 
     implementation project(path: ':corelibrary')
 
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 
     testImplementation rootProject.ext.dependencies["junit"]

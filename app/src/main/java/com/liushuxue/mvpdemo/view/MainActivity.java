@@ -1,21 +1,33 @@
 package com.liushuxue.mvpdemo.view;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.engine.Resource;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.liushuxue.corelibrary.mvp.IPresenter;
+import com.liushuxue.corelibrary.util.DisplayUtils;
 import com.liushuxue.mvpdemo.R;
 import com.liushuxue.mvpdemo.contract.IMainContract;
 import com.liushuxue.corelibrary.base.BaseActivity;
 import com.liushuxue.mvpdemo.presenter.MainPresenter;
 
+import java.security.MessageDigest;
+
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -26,6 +38,8 @@ import butterknife.OnClick;
  */
 
 public class MainActivity extends BaseActivity<MainPresenter> implements IMainContract.View {
+    @BindView(R.id.imageView2)
+    ImageView imageView2;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -34,7 +48,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainCo
 
     @Override
     protected void initView() {
+        RoundedCorners roundedCorners = new RoundedCorners(DisplayUtils.dip2px(this,8));
         notifyStatusBar(Color.TRANSPARENT, true);
+        Glide.with(this)
+                .load("https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF")
+                .transform(roundedCorners)
+                .into(imageView2);
     }
 
     @Override

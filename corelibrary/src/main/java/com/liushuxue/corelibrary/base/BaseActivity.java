@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.liushuxue.corelibrary.R;
 import com.liushuxue.corelibrary.broadcast.NetWorkStateReceiver;
@@ -26,6 +27,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IView, NetWorkStateReceiver.OnNetworkChangeListener {
     protected final String TAG = this.getClass().getName();
+    private ConstraintLayout baseContainer;
     private FrameLayout baseContentView;
     private LinearLayout networkErrorView;
     private LoadingPopupView loadingDialog;
@@ -41,8 +43,10 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+        baseContainer = findViewById(R.id.base_container);
         baseContentView = findViewById(R.id.base_content);
         networkErrorView = findViewById(R.id.base_network_error);
+        fitsSystemWindowsAble(false);
         int dataValue = (int) SPUtils.get(this, "aa", 12);
         netWorkStateReceiver = new NetWorkStateReceiver(this);
         //状态栏设置
@@ -88,6 +92,13 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
 
     public void unRegisterNetworkReceiver() {
         unregisterReceiver(netWorkStateReceiver);
+    }
+
+    /**
+     * 设置页面晃否空出状态栏高度
+     */
+    void fitsSystemWindowsAble(boolean fitSystemWindows) {
+        baseContainer.setFitsSystemWindows(fitSystemWindows);
     }
 
     protected abstract void initView();
