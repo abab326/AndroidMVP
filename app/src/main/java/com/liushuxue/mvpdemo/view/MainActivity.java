@@ -37,6 +37,8 @@ import java.util.stream.Collectors;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.liushuxue.mvpdemo.R.id.imageView2;
+
 /**
  * @author sirXu
  * @describe

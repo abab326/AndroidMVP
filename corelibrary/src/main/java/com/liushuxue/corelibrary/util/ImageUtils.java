@@ -19,25 +19,22 @@ import android.os.FileUtils;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
-
-import com.liushuxue.corelibrary.base.BaseApplication;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.FileNameMap;
 import java.net.URLConnection;
 
-import butterknife.internal.Utils;
-
 /**
  * 图片处理类
  */
+@RequiresApi(api = Build.VERSION_CODES.Q)
 public class ImageUtils {
 
     /**
@@ -124,11 +121,10 @@ public class ImageUtils {
         }
         Uri external = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         Uri insertUri = contentResolver.insert(external, values);
-        OutputStream outputStream = null;
+
         if (insertUri != null) {
             try {
-                outputStream = contentResolver.openOutputStream(insertUri);
-                return outputStream;
+               return contentResolver.openOutputStream(insertUri);
             } catch (FileNotFoundException e) {
                 return null;
             }
@@ -140,9 +136,9 @@ public class ImageUtils {
     /**
      * 获取指定名称的图片 uri
      *
-     * @param context
-     * @param imageName
-     * @return
+     * @param context 上下文
+     * @param imageName 图片名称
+     * @return 获取到的图片uri
      */
     public static Uri queryImage(Context context, String imageName) {
 
@@ -165,7 +161,7 @@ public class ImageUtils {
      *
      * @param context 上下文
      * @param uri     图片uri
-     * @return
+     * @return 获取到的图片
      */
     public static Bitmap getImageByUri(Context context, Uri uri) {
         try {
@@ -182,16 +178,14 @@ public class ImageUtils {
         return null;
     }
 
-    public static void modifyImage(Activity activity, String imageName, int sendRequestCode) {
+    public static OutputStream modifyImage(Activity activity, String imageName, int sendRequestCode) {
         Uri queryUri = queryImage(activity, imageName);
-        //首先判断是否有READ_EXTERNAL_STORAGE权限
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            OutputStream outputStream;
+
             try {
-                outputStream = activity.getContentResolver().openOutputStream(queryUri);
+              return activity.getContentResolver().openOutputStream(queryUri);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (@SuppressLint({"NewApi", "LocalSuppress"}) RecoverableSecurityException recoverableSecurityException) {
+            } catch (RecoverableSecurityException recoverableSecurityException) {
 
                 try {
                     activity.startIntentSenderForResult(
@@ -203,10 +197,12 @@ public class ImageUtils {
                             0
                     );
                 } catch (IntentSender.SendIntentException sendIntentException) {
-
+                   return null;
                 }
+                return null;
             }
-        }
+
+        return null;
     }
 
     /**
